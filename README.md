@@ -4,8 +4,9 @@ This is the final project for the Udacity Full Stack Web Development Nano Degree
 
 Here we have created a movie reference application in which movie producers can upload details of movies and actors, these files can be viewed by casting agents who are looking for new talent for future projects.
 
-### URL
-https://git.heroku.com/capstone-jackq.git
+### URLs
+#### Heroku: https://git.heroku.com/capstone-jackq.git
+#### Auth0 Login: https://jackq.eu.auth0.com/authorize?audience=capstone&response_type=token&client_id=NB8Np9dSgNKoLQE9d9ssmnj9at6F8EfG&redirect_uri=https://127.0.0.1:5000/login-results
 
 ## Dependencies
 
