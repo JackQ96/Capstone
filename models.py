@@ -1,6 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
-from flask_migrate import Migrate
+
 
 
 database_path = 'postgresql://demo1:pass1@localhost/capstone'
@@ -14,9 +14,7 @@ def setup_db(app):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    migrate = Migrate(app.py, db)
-    db.create_all()
-
+    
 
 def db_drop_and_create_all():
     db.drop_all()
@@ -27,7 +25,7 @@ class Movies(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120), nullable=False)
-    release_date = db.Column(db.Date, nullable=False)
+    release_year = db.Column(db.String(5), nullable=False)
     genre = db.Column(db.String(100))
     actors = db.relationship('Actors', backref='movie', lazy=True)
 

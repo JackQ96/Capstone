@@ -11,7 +11,7 @@ def create_app(test_config=None):
   app = Flask(__name__)
   setup_db(app)
   CORS(app)
-  db_drop_and_create_all()
+  #db_drop_and_create_all()
 
 
 
@@ -127,11 +127,11 @@ def post_movies(payload):
   data = request.get_json()
 
   new_title = data.get('title', None)
-  new_release_date = data.get('release_date', None)
+  new_release_year = data.get('release_year', None)
   new_genre = data.get('genre', None)
 
   try:
-    new_movie = Movies(title=new_title, release_date=new_release_date, genre=new_genre)
+    new_movie = Movies(title=new_title, release_year=new_release_year, genre=new_genre)
 
     new_movie.insert()
 
@@ -150,13 +150,13 @@ def patch_movies(payload, id):
   data = request.get_json()
 
   edit_title = data.get('title', None)
-  edit_release_date = data.get('release_date', None)
+  edit_release_year = data.get('release_year', None)
   edit_genre = data.get('genre',None)
 
   try:
     edit_movie = Movies.query.filter(Movies.id == id)
     edit_movie.title = edit_title
-    edit_movie.release_date = edit_release_date
+    edit_movie.release_year = edit_release_year
     edit_movie.genre = edit_genre
 
     if len(edit_movie) == 0:
@@ -211,7 +211,7 @@ def auth_error(error):
     'message': 'Auth Error'
   }), AuthError
 
-@app.route(401)
+@app.errorhandler(401)
 def unauthorized(error):
   return jsonify ({
     'success': False,
