@@ -33,7 +33,7 @@ class Movies(db.Model):
         return {
             'id': self.id,
             'title': self.title,
-            'release_date': self.release_date,
+            'release_year': self.release_year,
             'genre': self.genre
         }
 
