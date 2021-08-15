@@ -63,6 +63,7 @@ class CapstoneTestCase(unittest.TestCase):
         headers=get_headers(CASTING_AGENT))
 
         data = json.loads(res.data)
+        print(CASTING_AGENT)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['movies'])
@@ -77,14 +78,14 @@ class CapstoneTestCase(unittest.TestCase):
 
     # # # # ---- GET Actors Tests ----
 
-    def test_get_actors_agent(self):
-        res = self.client().get('/actors',
-            headers=get_headers(CASTING_AGENT))
+    # def test_get_actors_agent(self):
+    #     res = self.client().get('/actors',
+    #         headers=get_headers(CASTING_AGENT))
 
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['actors'])
+    #     data = json.loads(res.data)
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['actors'])
 
     # def test_get_actors_unauthorized(self):
     #     res = self.client().get('/actors')
