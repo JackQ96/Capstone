@@ -18,8 +18,8 @@ PRODUCER = os.environ.get('PRODUCER_JWT')
 CASTING_AGENT = os.environ.get('CASTING_JWT')
 
 
-def get_headers(token):
-    return {'Authorization': f'Bearer {token}'}
+def get_headers(payload):
+    return {'Authorization': f'Bearer {payload}'}
 
 
 class CapstoneTestCase(unittest.TestCase):

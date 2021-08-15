@@ -15,7 +15,8 @@ def create_app(test_config=None):
 
 # -------Actors-------
     @app.route('/actors', methods=['GET'])
-    def get_actors():
+    @requires_auth('get:actors')
+    def get_actors(payload):
         try:
             actors = Actors.query.all()
             if len(actors) == 0:
@@ -94,7 +95,8 @@ def create_app(test_config=None):
 
     # -------Movies-------
     @app.route('/movies', methods=['GET'])
-    def get_movies():
+    @requires_auth('get:movies')
+    def get_movies(payload):
         try:
             movies = Movies.query.all()
             if len(movies) == 0:
