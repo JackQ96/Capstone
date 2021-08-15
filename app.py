@@ -2,7 +2,7 @@ import os
 import json
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
-from models import app, setup_db, Movies, Actors
+from models import app, setup_db, db_drop_and_create_all, Movies, Actors
 from flask_cors import CORS
 from auth import AuthError, requires_auth
 
@@ -107,7 +107,7 @@ def create_app(test_config=None):
                 'success': True,
                 'movies': format_movies
             }), 200
-        except Exception as error:
+        except Exception:
             abort(422)
 
     @app.route('/movies', methods=['POST'])
