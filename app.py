@@ -147,11 +147,12 @@ def create_app(test_config=None):
 
             if len(edit_movie) == 0:
                 abort(404)
-
-            return jsonify({
-                'success': True,
-                'movie': edit_movie.format()
-            }), 200
+            else:
+                print(exc_info)
+                return jsonify({
+                    'success': True,
+                    'movie': edit_movie.format()
+                }), 200
         except Exception as error:
             abort(422)
 
@@ -160,13 +161,14 @@ def create_app(test_config=None):
     def delete_movies(pyload, id):
         try:
             movie = Movies.query.filter_by(id=id).first()
+            format_movie = movie.format()
             if len(movie) == 0:
                 abort(404)
-            else:
-                movie.delete()
+
+            movie.delete()
             return jsonify({
                 'success': True,
-                'message': 'Movie deleted'
+                'deleted_movie': format_movie
             }), 200
 
         except Exception as error:
@@ -176,30 +178,24 @@ def create_app(test_config=None):
     @app.errorhandler(404)
     def not_found(error):
         return jsonify({
-            'success': False,
-            'message': 'Not Found'
+            "success": False,
+            "message": 'Not Found'
         }), 404
 
     @app.errorhandler(422)
     def unprocessable(error):
         return jsonify({
-            'success': False,
-            'message': 'Unable to process'
+            "success": False,
+            "message": 'Unable to process'
         }), 422
 
     @app.errorhandler(AuthError)
-    def auth_error(error):
+    def Auth_Error(e):
         return jsonify({
-            'success': False,
-            'message': 'Auth Error'
-        }), AuthError
-
-    @app.errorhandler(401)
-    def unauthorized(error):
-        return jsonify({
-            'success': False,
-            'message': 'Unauthorized attempt'
-        }), 401
+            "success": False,
+            "error": e.status_code,
+            "message": e.error['description']
+        }), e.status_code
 
     return app
 
