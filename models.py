@@ -27,7 +27,6 @@ class Movies(db.Model):
     title = db.Column(db.String(120), nullable=False)
     release_year = db.Column(db.String(5), nullable=False)
     genre = db.Column(db.String(100))
-    actors = db.relationship('Actors', backref='movie', lazy=True)
 
     def format(self):
         return {
@@ -68,7 +67,6 @@ class Actors(db.Model):
     name = db.Column(db.String(120), nullable=False)
     gender = db.Column(db.String(6))
     age = db.Column(db.Integer)
-    featured_movies = db.relationship('Movies', backref='actor', lazy=True)
 
     def format(self):
         return {

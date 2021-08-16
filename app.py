@@ -108,6 +108,7 @@ def create_app(test_config=None):
                 'movies': format_movies
             }), 200
         except Exception:
+            print(exc_info)
             abort(422)
 
     @app.route('/movies', methods=['POST'])

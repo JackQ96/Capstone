@@ -63,7 +63,6 @@ class CapstoneTestCase(unittest.TestCase):
         headers=get_headers(CASTING_AGENT))
 
         data = json.loads(res.data)
-        print(CASTING_AGENT)
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data['success'], True)
         self.assertTrue(data['movies'])
