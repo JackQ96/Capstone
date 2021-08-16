@@ -25,7 +25,7 @@ def create_app(test_config=None):
                 format_actors = [actors.format() for actor in actors]
                 return jsonify({
                     'success': True,
-                    'actors': format_actors
+                    'actors': actors
                 }), 200
         except Exception as error:
             abort(422)
