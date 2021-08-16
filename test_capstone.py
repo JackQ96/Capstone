@@ -77,14 +77,14 @@ class CapstoneTestCase(unittest.TestCase):
 
     # # # # ---- GET Actors Tests ----
 
-    def test_get_actors_agent(self):
-        res = self.client().get('/actors',
-            headers=get_headers(CASTING_AGENT))
+    # def test_get_actors_agent(self):
+    #     res = self.client().get('/actors',
+    #         headers=get_headers(CASTING_AGENT))
 
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code, 200)
-        self.assertEqual(data['success'], True)
-        self.assertTrue(data['actors'])
+    #     data = json.loads(res.data)
+    #     self.assertEqual(res.status_code, 200)
+    #     self.assertEqual(data['success'], True)
+    #     self.assertTrue(data['actors'])
 
     # def test_get_actors_unauthorized(self):
     #     res = self.client().get('/actors')
@@ -97,13 +97,13 @@ class CapstoneTestCase(unittest.TestCase):
 
     # # ---- Post Movie Tests ----
 
-    # def test_post_movie(self):
-    #     res = self.client().post('/movies', json=self.movie, headers=get_headers(PRODUCER))
-    #     data = json.loads(res.data)
+    def test_post_movie(self):
+        res = self.client().post('/movies', json=self.movie, headers=get_headers(PRODUCER))
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['new_movie'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['new_movie'])
 
     # def test_post_movie_unauthorized(self):
     #     res = self.client().post('/movies', json=self.movie)

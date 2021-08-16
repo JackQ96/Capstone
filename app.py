@@ -33,7 +33,7 @@ def create_app(test_config=None):
 
     @app.route('/actors', methods=['POST'])
     @requires_auth('post:actors')
-    def post_actors(payload):
+    def post_actors(pyload):
         data = request.get_json()
 
         new_name = data.get('name', None)
@@ -55,7 +55,7 @@ def create_app(test_config=None):
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actors')
-    def patch_actors(payload, id):
+    def patch_actors(pyload, id):
         data = request.get_json()
 
         edit_name = data.get('name', None)
@@ -80,7 +80,7 @@ def create_app(test_config=None):
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actors')
-    def delete_actors(payload, id):
+    def delete_actors(pyload, id):
         try:
             actor = Actors.query.filter_by(id=id).first()
             if len(actor) == 0:
@@ -97,7 +97,7 @@ def create_app(test_config=None):
     # -------Movies-------
     @app.route('/movies', methods=['GET'])
     @requires_auth('get:movies')
-    def get_movies(payload):
+    def get_movies(pyload):
         try:
             movies = Movies.query.order_by(Movies.id).all()
             if len(movies) == 0:
@@ -114,7 +114,7 @@ def create_app(test_config=None):
 
     @app.route('/movies', methods=['POST'])
     @requires_auth('post:movies')
-    def post_movies(payload):
+    def post_movies(pyload):
         data = request.get_json()
         new_title = data.get('title', None)
         new_release_year = data.get('release_year', None)
@@ -133,7 +133,7 @@ def create_app(test_config=None):
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movies')
-    def patch_movies(payload, id):
+    def patch_movies(pyload, id):
         data = request.get_json()
         edit_title = data.get('title', None)
         edit_release_year = data.get('release_year', None)
@@ -157,7 +157,7 @@ def create_app(test_config=None):
 
     @app.route('/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movies')
-    def delete_movies(payload, id):
+    def delete_movies(pyload, id):
         try:
             movie = Movies.query.filter_by(id=id).first()
             if len(movie) == 0:
