@@ -22,12 +22,13 @@ def create_app(test_config=None):
             if len(actors) == 0:
                 abort(404)
             else:
-                format_actors = [actors.format() for actor in actors]
+                format_actors = [actor.format() for actor in actors]
                 return jsonify({
                     'success': True,
-                    'actors': actors
+                    'actors': format_actors
                 }), 200
         except Exception as error:
+            print(sys.exc_info)
             abort(422)
 
     @app.route('/actors', methods=['POST'])
@@ -98,15 +99,15 @@ def create_app(test_config=None):
     @requires_auth('get:movies')
     def get_movies(payload):
         try:
-            movies = Movies.query.all()
+            movies = Movies.query.order_by(Movies.id).all()
             if len(movies) == 0:
                 abort(404)
             else:
-                format_movies = [movies.format() for movie in movies]
-            return jsonify({
-                'success': True,
-                'movies': format_movies
-            }), 200
+                format_movies = [movie.format() for movie in movies]
+                return jsonify({
+                    'success': True,
+                    'movies': format_movies
+                }), 200
         except Exception:
             print(exc_info)
             abort(422)
