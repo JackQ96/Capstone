@@ -92,7 +92,7 @@ class CapstoneTestCase(unittest.TestCase):
     #     data = json.loads(res.data)
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertEqual(data['message'], 'Unauthorized')
+    #     self.assertEqual(data['message'], 'Authorization header is expected.')
 
 
     # # ---- Post Movie Tests ----
@@ -111,7 +111,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected')
+    #     self.assertTrue(data['message'], 'Authorization header is expected.')
     
 
     # # ---- Post Actor Tests ----
@@ -130,7 +130,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Unauthorized')
+    #     self.assertTrue(data['message'], 'Authorization header is expected.')
     
     # # ---- Patch Movie Tests ----
 
@@ -149,7 +149,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #         self.assertEqual(res.status_code, 401)
     #         self.assertEqual(data['success'], False)
-    #         self.assertTrue(data['message'], 'Unauthorized')
+    #         self.assertTrue(data['message'], 'Authorization header is expected.')
 
     # # ---- Patch Actor Tests ----
 
@@ -168,7 +168,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Unauthorized')
+    #     self.assertTrue(data['message'], 'Authorization header is expected.')
 
     # # ---- Delete Movie Tests ----
 
@@ -188,7 +188,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Unauthorized')
+    #     self.assertTrue(data['message'], 'Authorization header is expected.')
 
     
     # # ---- Delete Actor Tests ----
@@ -209,7 +209,7 @@ class CapstoneTestCase(unittest.TestCase):
 
     #     self.assertEqual(res.status_code, 401)
     #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Unauthorized')
+    #     self.assertTrue(data['message'], 'Authorization header is expected.')
 
 
 # Make the tests conveniently executable
