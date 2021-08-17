@@ -56,14 +56,14 @@ class CapstoneTestCase(unittest.TestCase):
 
     # ---- GET Movies Tests ----
 
-    # def test_get_movies_agent(self):
-    #     res = self.client().get('/movies',
-    #                             headers=get_headers(CASTING_AGENT))
+    def test_get_movies_agent(self):
+        res = self.client().get('/movies',
+                                headers=get_headers(CASTING_AGENT))
 
-    #     data = json.loads(res.data)
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['movies'])
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['movies'])
 
     def test_get_movies_unauthorized(self):
         res = self.client().get('/movies')
@@ -73,144 +73,144 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertEqual(data['success'], False)
         self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # # # # ---- GET Actors Tests ----
+    # # # ---- GET Actors Tests ----
 
-    # def test_get_actors_agent(self):
-    #     res = self.client().get('/actors',
-    #                             headers=get_headers(CASTING_AGENT))
+    def test_get_actors_agent(self):
+        res = self.client().get('/actors',
+                                headers=get_headers(CASTING_AGENT))
 
-    #     data = json.loads(res.data)
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['actors'])
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actors'])
 
-    # def test_get_actors_unauthorized(self):
-    #     res = self.client().get('/actors')
+    def test_get_actors_unauthorized(self):
+        res = self.client().get('/actors')
 
-    #     data = json.loads(res.data)
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertEqual(data['message'], 'Authorization header is expected.')
+        data = json.loads(res.data)
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertEqual(data['message'], 'Authorization header is expected.')
 
-    # # ---- Post Movie Tests ----
+    # ---- Post Movie Tests ----
 
-    # def test_post_movie(self):
-    #     res = self.client().post('/movies', json=self.movie,
-    #                              headers=get_headers(PRODUCER))
-    #     data = json.loads(res.data)
+    def test_post_movie(self):
+        res = self.client().post('/movies', json=self.movie,
+                                 headers=get_headers(PRODUCER))
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['movie'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['movie'])
 
-    # def test_post_movie_unauthorized(self):
-    #     res = self.client().post('/movies', json=self.movie)
-    #     data = json.loads(res.data)
+    def test_post_movie_unauthorized(self):
+        res = self.client().post('/movies', json=self.movie)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected.')
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertTrue(data['message'], 'Authorization header is expected.')
 
-    # # ---- Post Actor Tests ----
+    # ---- Post Actor Tests ----
 
-    # def test_post_actor(self):
-    #     res = self.client().post('/actors', json=self.actor,
-    #                              headers=get_headers(PRODUCER))
-    #     data = json.loads(res.data)
+    def test_post_actor(self):
+        res = self.client().post('/actors', json=self.actor,
+                                 headers=get_headers(PRODUCER))
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['actor'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['actor'])
 
-    # def test_post_actor_unauthorized(self):
-    #     res = self.client().post('/actors', json=self.actor)
-    #     data = json.loads(res.data)
+    def test_post_actor_unauthorized(self):
+        res = self.client().post('/actors', json=self.actor)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected.')
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertTrue(data['message'], 'Authorization header is expected.')
 
-    # # ---- Patch Movie Tests ----
+    # ---- Patch Movie Tests ----
 
-    # def test_patch_movie(self):
-    #     res = self.client().patch('/movies/5', json={
-    #         "title": "testing"}, headers=get_headers(PRODUCER))
+    def test_patch_movie(self):
+        res = self.client().patch('/movies/5', json={
+            "title": "testing"}, headers=get_headers(PRODUCER))
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['changed_movie'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['changed_movie'])
 
-    #     def test_patch_movie_unauthorized(self):
-    #         res = self.client().patch('/movies/1',
-    #                                   json={'title': 'changed'})
-    #         data = json.loads(res.data)
+        def test_patch_movie_unauthorized(self):
+            res = self.client().patch('/movies/1',
+                                      json={'title': 'changed'})
+            data = json.loads(res.data)
 
-    #         self.assertEqual(res.status_code, 401)
-    #         self.assertEqual(data['success'], False)
-    #         self.assertTrue(data['message'],
-    #                         'Authorization header is expected.')
+            self.assertEqual(res.status_code, 401)
+            self.assertEqual(data['success'], False)
+            self.assertTrue(data['message'],
+                            'Authorization header is expected.')
 
-    # # ---- Patch Actor Tests ----
+    # ---- Patch Actor Tests ----
 
-    # def test_patch_actor(self):
-    #     res = self.client().patch('/actors/4', json={
-    #         'name': 'changed'}, headers=get_headers(PRODUCER))
+    def test_patch_actor(self):
+        res = self.client().patch('/actors/4', json={
+            'name': 'changed'}, headers=get_headers(PRODUCER))
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['changed_actor'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['changed_actor'])
 
-    # def test_patch_actor_unauthorized(self):
-    #     res = self.client().patch('/actors/1', json={'name': 'changed'})
-    #     data = json.loads(res.data)
+    def test_patch_actor_unauthorized(self):
+        res = self.client().patch('/actors/1', json={'name': 'changed'})
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected.')
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertTrue(data['message'], 'Authorization header is expected.')
 
-    # # ---- Delete Movie Tests ----
+    # ---- Delete Movie Tests ----
 
-    # def test_delete_movie(self):
-    #     res = self.client().delete('/movies/3', headers=get_headers(PRODUCER))
+    def test_delete_movie(self):
+        res = self.client().delete('/movies/3', headers=get_headers(PRODUCER))
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['deleted_movie'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['deleted_movie'])
 
-    # def test_delete_movie_unauthorized(self):
-    #     res = self.client().delete('/movies/3')
+    def test_delete_movie_unauthorized(self):
+        res = self.client().delete('/movies/3')
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected.')
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertTrue(data['message'], 'Authorization header is expected.')
 
-    # # ---- Delete Actor Tests ----
+    # ---- Delete Actor Tests ----
 
-    # def test_delete_actor(self):
-    #     res = self.client().delete('/actors/3', headers=get_headers(PRODUCER))
+    def test_delete_actor(self):
+        res = self.client().delete('/actors/3', headers=get_headers(PRODUCER))
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['deleted_actor'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['deleted_actor'])
 
-    # def test_delete_actor_unauthorized(self):
-    #     res = self.client().delete('/actors/3')
+    def test_delete_actor_unauthorized(self):
+        res = self.client().delete('/actors/3')
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 401)
-    #     self.assertEqual(data['success'], False)
-    #     self.assertTrue(data['message'], 'Authorization header is expected.')
+        self.assertEqual(res.status_code, 401)
+        self.assertEqual(data['success'], False)
+        self.assertTrue(data['message'], 'Authorization header is expected.')
 
 
 # Make the tests conveniently executable

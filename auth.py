@@ -17,7 +17,6 @@ class AuthError(Exception):
 
 
 def get_token_auth_header():
-    try:
         auth = request.headers.get('Authorization', None)
 
         if not auth:
@@ -32,30 +31,23 @@ def get_token_auth_header():
                 raise AuthError({
                     'success': False,
                     'description': 'Bearer token not found'
-            }, 404)
+            }, 401)
 
             elif len(bearer_token) == 1:
                 raise AuthError({
                     'success': False,
                     'description': 'Bearer token not found'
-            }, 404)
+            }, 401)
 
             elif len(bearer_token)>2:
                 raise AuthError({
                     'success': False,
                     'description': 'Bearer token not found'
-            }, 404)
+            }, 401)
 
             token = bearer_token[1]
             return token
         
-
-    except:
-        raise AuthError({
-            'success': False,
-            'description': 'Unable to find token'
-    }, 400)
-
 
 def check_permissions(permission, payload):
 
@@ -133,15 +125,10 @@ def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
-            try:
-                token = get_token_auth_header()
-                payload = verify_decode_jwt(token)
-                check_permissions(permission, payload)
-                return f(payload, *args, **kwargs)
-
-            except AuthError as authError:
-                raise abort(authError.status_code,
-                            authError.error["description"])
+            token = get_token_auth_header()
+            payload = verify_decode_jwt(token)
+            check_permissions(permission, payload)
+            return f(payload, *args, **kwargs)
             
         return wrapper
     return requires_auth_decorator
