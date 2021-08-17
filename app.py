@@ -211,13 +211,13 @@ def create_app(test_config=None):
             "message": 'Unable to process'
         }), 422
 
-    @app.errorhandler(AuthError)
+    @app.errorhandler(401)
     def Auth_Error(e):
         return jsonify({
             "success": False,
-            "error": e.status_code,
-            "message": e.error['description']
-        }), e.status_code
+            "error": e.code,
+            "message": e.description
+        }), e.code
 
     return app
 

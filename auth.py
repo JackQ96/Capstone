@@ -57,8 +57,6 @@ def get_token_auth_header():
     }, 400)
 
 
-
-  
 def check_permissions(permission, payload):
 
     if permission in payload['permissions']:
@@ -69,7 +67,6 @@ def check_permissions(permission, payload):
             'success': False,
             'description': 'Permission not found'
             }, 401)
-    
 
 
 def verify_decode_jwt(token):
@@ -136,10 +133,15 @@ def requires_auth(permission=''):
     def requires_auth_decorator(f):
         @wraps(f)
         def wrapper(*args, **kwargs):
-            token = get_token_auth_header()
-            payload = verify_decode_jwt(token)
-            check_permissions(permission, payload)
-            return f(payload, *args, **kwargs)
+            try:
+                token = get_token_auth_header()
+                payload = verify_decode_jwt(token)
+                check_permissions(permission, payload)
+                return f(payload, *args, **kwargs)
 
+            except AuthError as authError:
+                raise abort(authError.status_code,
+                            authError.error["description"])
+            
         return wrapper
     return requires_auth_decorator
