@@ -83,13 +83,15 @@ def create_app(test_config=None):
     def delete_actors(pyload, id):
         try:
             actor = Actors.query.filter_by(id=id).first()
-            if len(actor) == 0:
+            format_actor = actor.format()
+
+            if len(format_actor) == 0:
                 abort(404)
-            else:
-                actor.delete()
+
+            actor.delete()
             return jsonify({
                 'success': True,
-                'message': 'Actor deleted'
+                'deleted_actor': format_actor
             }), 200
         except Exception as error:
             abort(422)
@@ -162,7 +164,8 @@ def create_app(test_config=None):
         try:
             movie = Movies.query.filter_by(id=id).first()
             format_movie = movie.format()
-            if len(movie) == 0:
+
+            if len(format_movie) == 0:
                 abort(404)
 
             movie.delete()
@@ -172,6 +175,7 @@ def create_app(test_config=None):
             }), 200
 
         except Exception as error:
+            print(sys.exc_info)
             abort(422)
 
     # -------Error Handlers-------
