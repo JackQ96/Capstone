@@ -52,7 +52,6 @@ def get_token_auth_header():
         
 
     except:
-        print(sys.exc_info)
         raise AuthError({
             'success': False,
             'description': 'Unable to find token'
