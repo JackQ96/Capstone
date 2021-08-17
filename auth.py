@@ -16,7 +16,6 @@ class AuthError(Exception):
         self.status_code = status_code
 
 
-
 def get_token_auth_header():
     try:
         auth = request.headers.get('Authorization', None)
@@ -26,7 +25,7 @@ def get_token_auth_header():
                 'success': False,
                 'description': 'Authorization header is expected.'
                 }, 401)
-        
+
         if auth:
             bearer_token = auth.split()
             if bearer_token[0].lower() != "bearer":

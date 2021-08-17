@@ -1,8 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask
 
-
-
 database_path = 'postgresql://demo1:pass1@localhost/capstone'
 
 app = Flask(__name__)
@@ -14,11 +12,12 @@ def setup_db(app):
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
-    
+
 
 def db_drop_and_create_all():
     db.drop_all()
     db.create_all()
+
 
 class Movies(db.Model):
     __tablename__ = 'movies'
@@ -38,8 +37,8 @@ class Movies(db.Model):
 
     def insert(self):
         try:
-             db.session.add(self)
-             db.session.commit()
+            db.session.add(self)
+            db.session.commit()
         except:
             db.session.rollback()
             print(sys.exc_info())
@@ -61,7 +60,7 @@ class Movies(db.Model):
 
 
 class Actors(db.Model):
-    __tablename__='actors'
+    __tablename__ = 'actors'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
@@ -78,8 +77,8 @@ class Actors(db.Model):
 
     def insert(self):
         try:
-             db.session.add(self)
-             db.session.commit()
+            db.session.add(self)
+            db.session.commit()
         except:
             db.session.rollback()
             print(sys.exc_info())
@@ -98,4 +97,3 @@ class Actors(db.Model):
         except:
             db.session.rollback()
             print(sys.exc_info())
-    
