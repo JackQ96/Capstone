@@ -44,7 +44,7 @@ The Producer has authorization to See/Edit/Post/Delete all Movies and Actors.
 The Casting Agent doesnt have the same level of authority within the app. The Agent can view all Movies and Actors but cannot make any changes to these files.
 
 #### Login: Casting@udacity.com
-#### Password: Casting1@udacity.com
+#### Password: Casting1
 
 ## Endpoints
 
