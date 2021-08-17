@@ -58,24 +58,33 @@ def create_app(test_config=None):
     def patch_actors(pyload, id):
         data = request.get_json()
 
-        edit_name = data.get('name', None)
-        edit_gender = data.get('gender', None)
-        edit_age = data.get('age', None)
+        name = data.get('name', None)
+        gender = data.get('gender', None)
+        age = data.get('age', None)
+
+        edit_actor = Actors.query.filter_by(id=id).first()
+
+        if name:
+            edit_actor.name = name
+        if gender:
+            edit_actor.gender = gender
+        if age:
+            edit_actor.age = age
 
         try:
-            edit_actor = Actors.query.filter(Actors.id == id)
-            edit_actor.name = edit_name
-            edit_actor.gender = edit_gender
-            edit_actor.age = edit_age
+            edit_actor.update()
 
-            if len(edit_actor) == 0:
+            format_edited_actor = edit_actor.format()
+
+            if len(format_edited_actor) == 0:
                 abort(404)
 
             return jsonify({
                 'success': True,
-                'actor': edit_actor.format()
+                'changed_actor': format_edited_actor
             }), 200
         except Exception as error:
+            print(sys.exc_info)
             abort(422)
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
@@ -137,25 +146,34 @@ def create_app(test_config=None):
     @requires_auth('patch:movies')
     def patch_movies(pyload, id):
         data = request.get_json()
-        edit_title = data.get('title', None)
-        edit_release_year = data.get('release_year', None)
-        edit_genre = data.get('genre', None)
+
+        title = data.get('title', None)
+        release_year = data.get('release_year', None)
+        genre = data.get('genre', None)
+
+        edit_movie = Movies.query.filter_by(id=id).first()
+
+        if title:
+            edit_movie.title = title
+        if release_year:
+            edit_movie.release_year = release_year
+        if genre:
+            edit_movie.genre = genre
 
         try:
-            edit_movie = Movies.query.filter(Movies.id == id)
-            edit_movie.title = edit_title
-            edit_movie.release_year = edit_release_year
-            edit_movie.genre = edit_genre
+            edit_movie.update()
 
-            if len(edit_movie) == 0:
+            format_edited_movie = edit_movie.format()
+
+            if len(format_edited_movie) == 0:
                 abort(404)
-            else:
-                print(exc_info)
-                return jsonify({
-                    'success': True,
-                    'movie': edit_movie.format()
-                }), 200
+
+            return jsonify({
+                'success': True,
+                'changed_movie': format_edited_movie
+            }), 200
         except Exception as error:
+            print(sys.exc_info)
             abort(422)
 
     @app.route('/movies/<int:id>', methods=['DELETE'])

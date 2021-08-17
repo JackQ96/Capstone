@@ -86,13 +86,13 @@ class CapstoneTestCase(unittest.TestCase):
     #     self.assertEqual(data['success'], True)
     #     self.assertTrue(data['actors'])
 
-    def test_get_actors_unauthorized(self):
-        res = self.client().get('/actors')
+    # def test_get_actors_unauthorized(self):
+    #     res = self.client().get('/actors')
 
-        data = json.loads(res.data)
-        self.assertEqual(res.status_code, 401)
-        self.assertEqual(data['success'], False)
-        self.assertEqual(data['message'], 'Authorization header is expected.')
+    #     data = json.loads(res.data)
+    #     self.assertEqual(res.status_code, 401)
+    #     self.assertEqual(data['success'], False)
+    #     self.assertEqual(data['message'], 'Authorization header is expected.')
 
 
     # # ---- Post Movie Tests ----
@@ -134,14 +134,14 @@ class CapstoneTestCase(unittest.TestCase):
     
     # # ---- Patch Movie Tests ----
 
-    # def test_patch_movie(self):
-    #     res = self.client().patch('/movies/1', json={'title': 'changed'}, headers=get_headers(PRODUCER))
+    def test_patch_movie(self):
+        res = self.client().patch('/movies/5', json={"title": "testing"}, headers=get_headers(PRODUCER))
 
-    #     data = json.loads(res.data)
+        data = json.loads(res.data)
 
-    #     self.assertEqual(res.status_code, 200)
-    #     self.assertEqual(data['success'], True)
-    #     self.assertTrue(data['changed_movie'])
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(data['success'], True)
+        self.assertTrue(data['changed_movie'])
 
     #     def test_patch_movie_unauthorized(self):
     #         res = self.client().patch('/movies/1', json={'title': 'changed'})
@@ -154,7 +154,7 @@ class CapstoneTestCase(unittest.TestCase):
     # # ---- Patch Actor Tests ----
 
     # def test_patch_actor(self):
-    #     res = self.client().patch('/actors/1', json={'name': 'changed'}, headers=get_headers(PRODUCER))
+    #     res = self.client().patch('/actors/4', json={'name': 'changed'}, headers=get_headers(PRODUCER))
 
     #     data = json.loads(res.data)
 
@@ -173,7 +173,7 @@ class CapstoneTestCase(unittest.TestCase):
     # # ---- Delete Movie Tests ----
 
     # def test_delete_movie(self):
-    #     res = self.client().delete('/movies/1', headers=get_headers(PRODUCER))
+    #     res = self.client().delete('/movies/3', headers=get_headers(PRODUCER))
 
     #     data = json.loads(res.data)
 
@@ -182,7 +182,7 @@ class CapstoneTestCase(unittest.TestCase):
     #     self.assertTrue(data['deleted_movie'])
 
     # def test_delete_movie_unauthorized(self):
-    #     res = self.client().delete('/movies/1')
+    #     res = self.client().delete('/movies/3')
 
     #     data = json.loads(res.data)
 
@@ -194,7 +194,7 @@ class CapstoneTestCase(unittest.TestCase):
     # # ---- Delete Actor Tests ----
 
     # def test_delete_actor(self):
-    #     res = self.client().delete('/actors/2', headers=get_headers(PRODUCER))
+    #     res = self.client().delete('/actors/3', headers=get_headers(PRODUCER))
 
     #     data = json.loads(res.data)
 
@@ -203,7 +203,7 @@ class CapstoneTestCase(unittest.TestCase):
     #     self.assertTrue(data['deleted_actor'])
 
     # def test_delete_actor_unauthorized(self):
-    #     res = self.client().delete('/actors/2')
+    #     res = self.client().delete('/actors/3')
 
     #     data = json.loads(res.data)
 
