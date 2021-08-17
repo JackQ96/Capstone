@@ -16,9 +16,7 @@ def create_app(test_config=None):
 
     @app.route('/')
     def index():
-        return jsonify({
-            "My Capstone App"
-        })
+        return "My Capstone App"
 
 # -------Actors-------
     @app.route('/actors', methods=['GET'])
