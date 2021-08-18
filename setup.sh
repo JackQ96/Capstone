@@ -3,3 +3,4 @@ export CASTING_AGENT_JWT = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6InhJVEto
 export AUTH0_DOMAIN='jackq.eu.auth0.com'
 export ALGORITHM=['RS256']
 export API_AUDIENCE='capstone'
+export DATABASE_PATH = 'postgresql://demo1:pass1@localhost/capstone'
