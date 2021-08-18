@@ -32,7 +32,6 @@ def create_app(test_config=None):
                     'actors': format_actors
                 }), 200
         except Exception as error:
-            print(sys.exc_info)
             abort(422)
 
     @app.route('/actors', methods=['POST'])
@@ -88,7 +87,6 @@ def create_app(test_config=None):
                 'changed_actor': format_edited_actor
             }), 200
         except Exception as error:
-            print(sys.exc_info)
             abort(422)
 
     @app.route('/actors/<int:id>', methods=['DELETE'])
@@ -124,7 +122,6 @@ def create_app(test_config=None):
                     'movies': format_movies
                 }), 200
         except Exception:
-            print(exc_info)
             abort(422)
 
     @app.route('/movies', methods=['POST'])
