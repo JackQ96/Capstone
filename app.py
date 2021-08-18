@@ -178,7 +178,6 @@ def create_app(test_config=None):
                 'changed_movie': format_edited_movie
             }), 200
         except Exception as error:
-            print(sys.exc_info)
             abort(422)
 
     @app.route('/movies/<int:id>', methods=['DELETE'])
@@ -198,7 +197,6 @@ def create_app(test_config=None):
             }), 200
 
         except Exception as error:
-            print(sys.exc_info)
             abort(422)
 
     # -------Error Handlers-------
@@ -216,13 +214,13 @@ def create_app(test_config=None):
             "message": 'Unable to process'
         }), 422
 
-    @app.errorhandler(401)
-    def Auth_Error(e):
+    @app.errorhandler(AuthError)
+    def Auth_Error(error):
         return jsonify({
             "success": False,
-            "error": e.code,
-            "message": e.description
-        }), e.code
+            "error": error.status_code,
+            "message": error.error['description']
+        }), error.status_code
 
     return app
 

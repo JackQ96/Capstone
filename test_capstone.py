@@ -175,7 +175,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Movie Tests ----
 
     def test_delete_movie(self):
-        res = self.client().delete('/movies/3', headers=get_headers(PRODUCER))
+        res = self.client().delete('/movies/6', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -184,7 +184,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_movie'])
 
     def test_delete_movie_unauthorized(self):
-        res = self.client().delete('/movies/3')
+        res = self.client().delete('/movies/7')
 
         data = json.loads(res.data)
 
@@ -195,7 +195,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Actor Tests ----
 
     def test_delete_actor(self):
-        res = self.client().delete('/actors/3', headers=get_headers(PRODUCER))
+        res = self.client().delete('/actors/6', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -204,7 +204,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_actor'])
 
     def test_delete_actor_unauthorized(self):
-        res = self.client().delete('/actors/3')
+        res = self.client().delete('/actors/7')
 
         data = json.loads(res.data)
 
