@@ -13,7 +13,6 @@ def create_app(test_config=None):
     CORS(app)
     # db_drop_and_create_all()
 
-
     @app.route('/')
     def index():
         return "My Capstone App"
