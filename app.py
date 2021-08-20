@@ -1,5 +1,6 @@
 import os
 import json
+import sys
 from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from models import app, setup_db, db_drop_and_create_all, Movies, Actors
@@ -7,10 +8,12 @@ from flask_cors import CORS
 from auth import AuthError, requires_auth
 
 
+
 def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
     CORS(app)
+    print(sys.path)
     # db_drop_and_create_all()
 
     @app.route('/')
