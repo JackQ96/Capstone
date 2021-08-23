@@ -8,7 +8,6 @@ from flask_cors import CORS
 from auth import AuthError, requires_auth
 
 
-
 def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
