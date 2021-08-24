@@ -2,11 +2,12 @@
 
 This is the final project for the Udacity Full Stack Web Development Nano Degree.
 
-My motivation behind creating this app was to showcase the skills I have learned across the full stack of web development. I wanted to keep the application simple and easy to understand whilst implementing features such as third party authentication and deploying the app live onto Heroku.
-
-
-
 Here we have created a movie reference application in which movie producers can upload details of movies and actors, these files can be viewed by casting agents who are looking for new talent for future projects.
+
+My motivation behind creating this app was to showcase the skills I have learned across the full stack of web development. I wanted to keep the application simple and easy to understand, whilst implementing features such as third party authentication and deploying the app live onto Heroku.
+
+
+
 
 ### URLs
 #### Heroku: https://capstone-jackq3.herokuapp.com/
