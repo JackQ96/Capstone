@@ -35,21 +35,21 @@ flask run
 ```
 to start up the server.
 
-## Accounts
+## Auth0 Accounts
 
 For test purposes i have created two seperate accounts, both with different levels of authorization. Firstly we have:
 
 ### Producer
-The Producer has authorization to See/Edit/Post/Delete all Movies and Actors.
-
-#### Login: Producer@udacity.com
-#### Password: Producer1
+> The Producer has authorization to See/Edit/Post/Delete all Movies and Actors.
+>#### Login: Producer@udacity.com
+>#### Password: Producer1
 
 ### Casting Agent
-The Casting Agent doesnt have the same level of authority within the app. The Agent can view all Movies and Actors but cannot make any changes to these files.
+>The Casting Agent doesnt have the same level of authority within the app. The Agent can view all Movies and Actors but cannot make any changes to these files.
+>#### Login: Casting@udacity.com
+>#### Password: Casting1
 
-#### Login: Casting@udacity.com
-#### Password: Casting1
+When the user logs in, a JWT will be created, signed and sent to the user (Using the RSA algorithm for this application). This token proves that the user is authorized to access the permissions that were assigned to the user when setting up the Auth0 settings. The token is only active for 24 hours, so after this time expires, the user will need to log in again.
 
 ## Endpoints
 
