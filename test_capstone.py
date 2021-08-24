@@ -8,12 +8,10 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-DB_USER = os.getenv('DB_USER', 'demo1')
-DB_PASSWORD = os.getenv('DB_PASSWORD', 'pass1')
-DB_NAME = os.getenv('DB_NAME', 'capstone')
-DB_HOST = os.getenv('DB_HOST', '127.0.0.1:5000')
-
-
+DB_USER = os.environ.get('demo1')
+DB_PASSWORD = os.environ.get('pass1')
+DB_NAME = os.environ.get('capstone')
+DB_HOST = os.environ.get('127.0.0.1:5000')
 PRODUCER = os.environ.get('PRODUCER_JWT')
 CASTING_AGENT = os.environ.get('CASTING_JWT')
 
@@ -143,7 +141,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['changed_movie'])
 
         def test_patch_movie_unauthorized(self):
-            res = self.client().patch('/movies/1',
+            res = self.client().patch('/movies/5',
                                       json={'title': 'changed'})
             data = json.loads(res.data)
 
@@ -165,7 +163,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['changed_actor'])
 
     def test_patch_actor_unauthorized(self):
-        res = self.client().patch('/actors/1', json={'name': 'changed'})
+        res = self.client().patch('/actors/5', json={'name': 'changed'})
         data = json.loads(res.data)
 
         self.assertEqual(res.status_code, 401)
@@ -175,7 +173,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Movie Tests ----
 
     def test_delete_movie(self):
-        res = self.client().delete('/movies/6', headers=get_headers(PRODUCER))
+        res = self.client().delete('/movies/10', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -184,7 +182,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_movie'])
 
     def test_delete_movie_unauthorized(self):
-        res = self.client().delete('/movies/7')
+        res = self.client().delete('/movies/11')
 
         data = json.loads(res.data)
 
@@ -195,7 +193,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Actor Tests ----
 
     def test_delete_actor(self):
-        res = self.client().delete('/actors/6', headers=get_headers(PRODUCER))
+        res = self.client().delete('/actors/7', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -204,7 +202,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_actor'])
 
     def test_delete_actor_unauthorized(self):
-        res = self.client().delete('/actors/7')
+        res = self.client().delete('/actors/8')
 
         data = json.loads(res.data)
 

@@ -56,7 +56,7 @@ def create_app(test_config=None):
             }), 200
 
         except Exception as error:
-            abort(422)
+            abort(400)
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actors')
@@ -143,7 +143,7 @@ def create_app(test_config=None):
               'movie': new_movie.format()
             }), 200
         except Exception as error:
-            abort(422)
+            abort(400)
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movies')
@@ -211,6 +211,13 @@ def create_app(test_config=None):
             "success": False,
             "message": 'Unable to process'
         }), 422
+
+    @app.errorhandler(400)
+    def unprocessable(error):
+        return jsonify({
+            "success": False,
+            "message": 'Bad request'
+        }), 400
 
     @app.errorhandler(AuthError)
     def Auth_Error(error):
