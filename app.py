@@ -8,6 +8,8 @@ from flask_cors import CORS
 from auth import AuthError, requires_auth
 
 
+# sets up the initial application and links to the database
+# (uncomment the last line of create_app for first time running)
 def create_app(test_config=None):
     app = Flask(__name__)
     setup_db(app)
@@ -20,6 +22,8 @@ def create_app(test_config=None):
         return "My Capstone App"
 
 # -------Actors-------
+
+    # Retrieves all Actor entries from the postgres database
     @app.route('/actors', methods=['GET'])
     @requires_auth('get:actors')
     def get_actors(payload):
@@ -35,6 +39,8 @@ def create_app(test_config=None):
                 }), 200
         except Exception as error:
             abort(422)
+
+    # Allows the user to create a new Actor
 
     @app.route('/actors', methods=['POST'])
     @requires_auth('post:actors')
@@ -57,6 +63,8 @@ def create_app(test_config=None):
 
         except Exception as error:
             abort(400)
+
+    # Allows the user to edit an existing Actor
 
     @app.route('/actors/<int:id>', methods=['PATCH'])
     @requires_auth('patch:actors')
@@ -91,6 +99,8 @@ def create_app(test_config=None):
         except Exception as error:
             abort(422)
 
+    # Endpoint to delete an existing actor
+
     @app.route('/actors/<int:id>', methods=['DELETE'])
     @requires_auth('delete:actors')
     def delete_actors(pyload, id):
@@ -109,7 +119,10 @@ def create_app(test_config=None):
         except Exception as error:
             abort(422)
 
-    # -------Movies-------
+# -------Movies-------
+
+    # Retrieve all movies listed in database
+
     @app.route('/movies', methods=['GET'])
     @requires_auth('get:movies')
     def get_movies(pyload):
@@ -125,6 +138,8 @@ def create_app(test_config=None):
                 }), 200
         except Exception:
             abort(422)
+
+    # Allows the user to create new movies
 
     @app.route('/movies', methods=['POST'])
     @requires_auth('post:movies')
@@ -144,6 +159,7 @@ def create_app(test_config=None):
             }), 200
         except Exception as error:
             abort(400)
+    # Allows the user to make changes to existing movies
 
     @app.route('/movies/<int:id>', methods=['PATCH'])
     @requires_auth('patch:movies')
@@ -178,6 +194,8 @@ def create_app(test_config=None):
         except Exception as error:
             abort(422)
 
+    # Endpoint to delete existing movies
+
     @app.route('/movies/<int:id>', methods=['DELETE'])
     @requires_auth('delete:movies')
     def delete_movies(pyload, id):
@@ -198,6 +216,7 @@ def create_app(test_config=None):
             abort(422)
 
     # -------Error Handlers-------
+
     @app.errorhandler(404)
     def not_found(error):
         return jsonify({

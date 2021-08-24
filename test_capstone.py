@@ -4,6 +4,9 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db, Movies, Actors
+from dotenv import load_dotenv
+
+# load_dontenv()
 
 
 DB_USER = os.environ.get('demo1')
@@ -171,7 +174,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Movie Tests ----
 
     def test_delete_movie(self):
-        res = self.client().delete('/movies/10', headers=get_headers(PRODUCER))
+        res = self.client().delete('/movies/12', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -180,7 +183,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_movie'])
 
     def test_delete_movie_unauthorized(self):
-        res = self.client().delete('/movies/11')
+        res = self.client().delete('/movies/13')
 
         data = json.loads(res.data)
 
@@ -191,7 +194,7 @@ class CapstoneTestCase(unittest.TestCase):
     # ---- Delete Actor Tests ----
 
     def test_delete_actor(self):
-        res = self.client().delete('/actors/7', headers=get_headers(PRODUCER))
+        res = self.client().delete('/actors/12', headers=get_headers(PRODUCER))
 
         data = json.loads(res.data)
 
@@ -200,7 +203,7 @@ class CapstoneTestCase(unittest.TestCase):
         self.assertTrue(data['deleted_actor'])
 
     def test_delete_actor_unauthorized(self):
-        res = self.client().delete('/actors/8')
+        res = self.client().delete('/actors/13')
 
         data = json.loads(res.data)
 
