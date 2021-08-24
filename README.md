@@ -117,3 +117,22 @@ The DELETE endpoints are quite self explanatory and will allow the producer to d
          }
 ```
 as confirmation that the file has been succesfully deleted.
+
+### Error Handling
+
+Error handlers have been included to help identify problems the app may face. An example would be:
+```
+        {
+               'success' : False,
+               'error' : 404,
+               'message' : 'Not Found'
+        }
+ ```
+An example of when this type of error would be triggered is if you tried to find the actors and there were no actors present in the database.
+
+The error handlers present are:
+
+>  400 : Bad Request  
+>  401 : Unauthorized  
+>  404 : Not Found  
+>  422 : Unprocessable  
