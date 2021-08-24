@@ -4,16 +4,14 @@ import json
 from flask_sqlalchemy import SQLAlchemy
 from app import create_app
 from models import setup_db, Movies, Actors
-from dotenv import load_dotenv
 
-load_dotenv()
 
 DB_USER = os.environ.get('demo1')
 DB_PASSWORD = os.environ.get('pass1')
 DB_NAME = os.environ.get('capstone')
 DB_HOST = os.environ.get('127.0.0.1:5000')
 PRODUCER = os.environ.get('PRODUCER_JWT')
-CASTING_AGENT = os.environ.get('CASTING_JWT')
+CASTING_AGENT = os.environ.get('CASTING_AGENT_JWT')
 
 
 def get_headers(payload):
